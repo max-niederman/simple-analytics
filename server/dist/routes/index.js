@@ -1,27 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const fastify_typebox_1 = __importDefault(require("@foodsy-app/fastify-typebox"));
+const tracker_1 = __importDefault(require("./tracker"));
 const plugin = async (fastify, opts, done) => {
-    fastify.post("/client", {
-        schema: {
-            response: {
-                200: {
-                    type: "object",
-                    properties: {
-                        success: { type: "boolean" },
-                        message: { type: "string" },
-                    },
-                },
-            },
-        },
-    }, async (req) => {
-        if (typeof req.body !== "object")
-            return;
-        console.log({
-            ...req.body,
-            ip: req.ip,
-        });
-        return { success: true, message: "Recorded analytics data" };
-    });
+    fastify.register(fastify_typebox_1.default);
+    fastify.register(tracker_1.default, { prefix: "/tracker" });
     done();
 };
 exports.default = plugin;

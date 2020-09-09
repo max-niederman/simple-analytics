@@ -1,7 +1,13 @@
 import fastify from "fastify";
+import fastifyRedis from "fastify-redis";
 import routes from "./routes";
 
 const app = fastify({ logger: true });
+
+app.register(fastifyRedis, {
+  host: process.env.REDIS_HOST || "127.0.0.1",
+  port: Number(process.env.REDIS_PORT) || 6379,
+});
 
 app.register(routes);
 

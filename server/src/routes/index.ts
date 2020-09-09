@@ -1,8 +1,11 @@
 import { FastifyPluginCallback } from "fastify";
-import client from "./client";
+import fastifyTypebox from "@foodsy-app/fastify-typebox";
+import tracker from "./tracker";
 
 const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
-  fastify.register(client, { prefix: "/client" });
+  fastify.register(fastifyTypebox);
+
+  fastify.register(tracker, { prefix: "/tracker" });
 
   done();
 };

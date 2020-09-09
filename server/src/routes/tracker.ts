@@ -1,10 +1,17 @@
 import { FastifyPluginCallback } from "fastify";
+import { Type } from "@sinclair/typebox";
 
 const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
+  const redis = fastify.redis;
+
   fastify.post(
     "/",
     {
-      schema: {
+      schema: fastify.typeboxSchema({
+        body: Type.Object({
+          host: Type.String(),
+          resource: Type.String(),
+        }),
         response: {
           200: {
             type: "object",
@@ -14,15 +21,10 @@ const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
             },
           },
         },
-      },
+      }),
     },
     async (req) => {
-      if (typeof req.body !== "object") return;
-
-      console.log({
-        ...req.body,
-        ip: req.ip,
-      });
+      await redis.incr(`${req.body?.host}:views`);
 
       return { success: true, message: "Recorded analytics data" };
     },
