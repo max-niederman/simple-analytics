@@ -1,7 +1,7 @@
 {
   "name": "simple-analytics-client",
   "version": "1.0.2",
-  "main": "src/analytics.js",
+  "main": "dist/analytics.js",
   "author": "Max Niederman",
   "license": "MIT",
   "devDependencies": {
