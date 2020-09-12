@@ -4,7 +4,7 @@ const load = async (apiBase) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ url: location.href, screenWidth: screen.width }),
+    body: JSON.stringify({ screenWidth: screen.width }),
   });
 };
 

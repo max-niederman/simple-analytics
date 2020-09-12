@@ -11,7 +11,6 @@ const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
     {
       schema: fastify.typeboxSchema({
         body: Type.Object({
-          url: Type.String(),
           screenWidth: Type.Integer(),
         }),
         response: {
@@ -26,7 +25,7 @@ const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
       }),
     },
     async (req) => {
-      const url = new URL(req.body!.url);
+      const url = new URL(req.headers["referer"]);
       const ua = new UAParser(req.headers["user-agent"]);
       const { browser, os } = ua.getResult();
 
