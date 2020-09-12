@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Analytics</title>
+
+    <!-- MVP.css -->
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <style>
+      section aside {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Simple Analytics</h1>
+      <p>
+        <a href="https://github.com/max-niederman/simple-analytics" target="_blank"><i>Simple Analytics →</i></a>
+      </p>
+    </header>
+    <main>
+      <hr />
+      <section>
+        <header>
+          <h2>Features</h2>
+        </header>
+        <aside>
+          <h3>Privacy-centric</h3>
+          <p>GDPR and CCPA compliant, by default. No consent required.</p>
+        </aside>
+        <aside>
+          <h3>Lightweight</h3>
+          <p>The total bundle size is ~1KB, compared to Google Analytics' ~45KB.</p>
+        </aside>
+        <aside>
+          <h3>Free and Open Source</h3>
+          <p>You own your data, and won't ever have to pay to use it.</p>
+        </aside>
+      </section>
+    </main>
+
+    <!-- Simple Analytics -->
+    <script src="../dist/analytics.js"></script>
+    <script>
+      analytics("https://127.0.0.1:3000");
+    </script>
+  </body>
+</html>
