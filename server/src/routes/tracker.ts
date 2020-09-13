@@ -2,9 +2,20 @@ import { FastifyPluginCallback } from "fastify";
 import { Type } from "@sinclair/typebox";
 import { UAParser } from "ua-parser-js";
 import getScreenType from "../utils/screen-types";
+import { CronJob } from "cron";
 
 const plugin: FastifyPluginCallback = async (fastify, opts, done) => {
   const { redis } = fastify;
+
+  const historyJob = new CronJob("0 0 * * *", async () => {
+    ["resource", "size", "browser", "os"].forEach((statName: string) => {
+      const stream = redis.scanStream({ match: `*:${statName}`, count: 100 });
+      const pl = redis.pipeline();
+      stream.on("data", (keys) => keys.forEach(async (key: string) => redis.del(key)));
+      stream.on("end", () => pl.exec());
+    });
+  });
+  historyJob.start();
 
   fastify.post(
     "/",

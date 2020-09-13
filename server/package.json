@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@types/cron": "^1.7.2",
     "@types/ioredis": "^4.17.4",
     "@types/node": "^14.6.4",
     "@types/ua-parser-js": "^0.7.33",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@foodsy-app/fastify-typebox": "^5.0.0",
     "@sinclair/typebox": "^0.10.1",
+    "cron": "^1.8.2",
     "fastify": "^3.3.0",
     "fastify-cors": "^4.1.0",
     "fastify-redis": "^4.0.3",
