@@ -1,5 +1,5 @@
 {
-  "name": "simple-analytics-client",
+  "name": "simple-analytics-tracker",
   "version": "1.1.0",
   "main": "dist/analytics.js",
   "author": "Max Niederman",
